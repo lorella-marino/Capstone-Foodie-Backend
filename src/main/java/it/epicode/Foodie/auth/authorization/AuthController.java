@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -46,12 +47,22 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
-        log.info("Login request:");
-        String token = appUserService.authenticateUser(
-                loginRequest.getUsername(),
-                loginRequest.getPassword()
-        );
-        return ResponseEntity.ok(new AuthResponse(token));
+        String token = appUserService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+
+        AppUser user = appUserService.findByUsername(loginRequest.getUsername())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Trasforma in stringhe i ruoli
+        Set<String> roles = user.getRoles().stream()
+                .map(role -> role.name())
+                .collect(Collectors.toSet());
+
+        return ResponseEntity.ok(new AuthResponse(
+                token,
+                user.getNome(),
+                user.getEmail(),
+                roles
+        ));
     }
 
     @GetMapping("/users")
