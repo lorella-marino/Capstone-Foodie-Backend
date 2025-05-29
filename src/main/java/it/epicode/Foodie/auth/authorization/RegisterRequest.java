@@ -11,6 +11,5 @@ public class RegisterRequest {
     private String nome;
     private String cognome;
     private String telefono;
-    private String indirizzo;
     private String email;
 }

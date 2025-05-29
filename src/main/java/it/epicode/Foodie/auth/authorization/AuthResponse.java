@@ -9,8 +9,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class AuthResponse {
     private String token;
+    private String username;
     private String nome;
+    private String cognome;
     private String email;
+    private String telefono;
     private Set<String> roles;
 }
 

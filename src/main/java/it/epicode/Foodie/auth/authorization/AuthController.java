@@ -3,6 +3,7 @@ package it.epicode.Foodie.auth.authorization;
 import it.epicode.Foodie.auth.app_user.AppUser;
 import it.epicode.Foodie.auth.app_user.AppUserService;
 import it.epicode.Foodie.auth.app_user.Role;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,6 @@ public class AuthController {
                 registerRequest.getNome(),
                 registerRequest.getCognome(),
                 registerRequest.getTelefono(),
-                registerRequest.getIndirizzo(),
                 registerRequest.getEmail(),
                 Set.of(Role.ROLE_USER) // Assegna il ruolo di default
         );
@@ -59,8 +59,11 @@ public class AuthController {
 
         return ResponseEntity.ok(new AuthResponse(
                 token,
+                user.getUsername(),
                 user.getNome(),
+                user.getCognome(),
                 user.getEmail(),
+                user.getTelefono(),
                 roles
         ));
     }
@@ -71,10 +74,29 @@ public class AuthController {
         return ResponseEntity.ok(appUserService.findAllUsers());
     }
 
-    @DeleteMapping("/delete/{username}")
+    @PutMapping("/update")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<String> deleteUser(@PathVariable String username) {
-        appUserService.delete(username);
+    public ResponseEntity<RegisterRequest> updateUser(@AuthenticationPrincipal AppUser appUser, @RequestBody @Valid RegisterRequest updatedUser) {
+        RegisterRequest updatedUserResponse = appUserService.update(appUser.getUsername(), updatedUser);
+        return ResponseEntity.ok(updatedUserResponse);
+    }
+
+    @DeleteMapping("/delete")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<String> deleteUser(@AuthenticationPrincipal AppUser appUser) {
+        appUserService.delete(appUser.getUsername());
         return ResponseEntity.ok("Utente eliminato con successo");
     }
+
+    @DeleteMapping("/delete/{username}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
+        try {
+            appUserService.delete(username);
+            return ResponseEntity.ok("Utente eliminato con successo");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

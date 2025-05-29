@@ -32,10 +32,10 @@ public class EmailService {
     }
 
     public void sendOrder(EmailOrdineRequest ordine) throws MessagingException {
-        String subject = "Nuovo ordine da " + ordine.getNomeCliente();
+        String subject = "Nuovo ordine da " + ordine.getNomeCliente() + " " + ordine.getCognomeCliente();
 
         StringBuilder body = new StringBuilder();
-        body.append("<strong>Cliente:</strong> ").append(ordine.getNomeCliente())
+        body.append("<strong>Cliente:</strong> ").append(ordine.getNomeCliente() + " " + ordine.getCognomeCliente() )
                 .append("<br><strong>Email:</strong> ").append(ordine.getEmailCliente())
                 .append("<br><strong>Tipo Consegna:</strong> ").append(ordine.getTipoConsegna());
 

@@ -33,7 +33,6 @@ public class AppUser implements UserDetails {
     private String nome;
     private String cognome;
     private String telefono;
-    private String indirizzo;
     private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -53,18 +52,17 @@ public class AppUser implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    public AppUser(String username, String password, String nome, String cognome ,String telefono, String indirizzo, String email,  Collection<? extends GrantedAuthority> authorities) {
-        this ( username, password, nome, cognome, telefono,indirizzo, email,  true, true, true, true, authorities);
+    public AppUser(String username, String password, String nome, String cognome ,String telefono, String email,  Collection<? extends GrantedAuthority> authorities) {
+        this ( username, password, nome, cognome, telefono, email,  true, true, true, true, authorities);
     }
 
-    public AppUser(String username, String password, String nome, String cognome, String telefono, String indirizzo, String email, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+    public AppUser(String username, String password, String nome, String cognome, String telefono, String email, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
 
         this.username = username;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;
         this.telefono = telefono;
-        this.indirizzo = indirizzo;
         this.email = email;
         this.enabled = enabled;
         this.accountNonExpired = accountNonExpired;

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class EmailOrdineRequest {
     private String nomeCliente;
+    private String cognomeCliente;
     private String emailCliente;
     private List<ProdottoOrdine> prodotti;
     private String tipoConsegna;
