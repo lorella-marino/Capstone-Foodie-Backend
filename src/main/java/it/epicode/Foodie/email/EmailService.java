@@ -32,10 +32,11 @@ public class EmailService {
     }
 
     public void sendOrder(EmailOrdineRequest ordine) throws MessagingException {
-        String subject = "Nuovo ordine da " + ordine.getNomeCliente() + " " + ordine.getCognomeCliente();
+        String subjectAdmin = "Nuovo ordine da " + ordine.getNomeCliente() + " " + ordine.getCognomeCliente();
+        String subjectUser = "Il tuo ordine Foodie";
 
         StringBuilder body = new StringBuilder();
-        body.append("<strong>Cliente:</strong> ").append(ordine.getNomeCliente() + " " + ordine.getCognomeCliente() )
+        body.append("<strong>Cliente:</strong> ").append(ordine.getNomeCliente()).append(" ").append(ordine.getCognomeCliente())
                 .append("<br><strong>Email:</strong> ").append(ordine.getEmailCliente())
                 .append("<br><strong>Tipo Consegna:</strong> ").append(ordine.getTipoConsegna());
 
@@ -65,8 +66,13 @@ public class EmailService {
         }
         body.append("</ul><br><strong>Totale:</strong> €").append(ordine.getTotale());
 
-        sendEmail("lorellamarinocode@gmail.com", ordine.getEmailCliente(), subject, body.toString());
+        // Invia email a admin
+        sendEmail("lorellamarinocode@gmail.com", ordine.getEmailCliente(), subjectAdmin, body.toString());
+
+        // Invia email al cliente
+        sendEmail(ordine.getEmailCliente(), "lorellamarinocode@gmail.com", subjectUser, body.toString());
     }
+
 
 }
 

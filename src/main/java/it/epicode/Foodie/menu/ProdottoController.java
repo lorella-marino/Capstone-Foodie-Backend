@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/api/menu" )
+@RequestMapping ("/api/prodotto" )
 public class ProdottoController {
     @Autowired
     private ProdottoService prodottoService;
@@ -24,7 +24,7 @@ public class ProdottoController {
         prodottoService.uploadImmagine(id, file);
     }
 
-    @GetMapping
+    @GetMapping ("/menu")
     public List<Prodotto> getMenu() {
         return prodottoService.getMenu();
     }
