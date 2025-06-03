@@ -48,6 +48,10 @@ public class EmailService {
             body.append("<br><strong>Location ritiro:</strong> ").append(ordine.getIndirizzo());
         }
 
+        if (ordine.getOrario() != null && !ordine.getOrario().isEmpty()) {
+            body.append("<br><strong>Orario:</strong> ").append(ordine.getOrario());
+        }
+
         body.append("<br><br><strong>Prodotti Ordinati:</strong><ul>");
         for (ProdottoOrdine p : ordine.getProdotti()) {
             body.append("<li>")

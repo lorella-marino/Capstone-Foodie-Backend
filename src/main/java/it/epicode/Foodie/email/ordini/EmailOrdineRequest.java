@@ -13,5 +13,6 @@ public class EmailOrdineRequest {
     private List<ProdottoOrdine> prodotti;
     private String tipoConsegna;
     private String indirizzo;
+    private String orario;
     private double totale;
 }
