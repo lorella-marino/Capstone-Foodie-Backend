@@ -14,6 +14,7 @@ public class Topping{
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.SEQUENCE)
     private Long id;
+    @Column(unique = true)
     private String nome;
     private double prezzo;
 }
