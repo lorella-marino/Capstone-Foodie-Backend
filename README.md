@@ -11,19 +11,29 @@ Il progetto sarà sviluppato utilizzando:
 **Front-end** ➡️ https://github.com/lorella-marino/Capstone-Foodie-Frontend.git
 
 • React 19 ⚛: per una UI moderna e accessibile, gestita tramite componenti riutilizzabili 
+
 • Redux: per la gestione dello stato globale 
+
 • React Router v7: per la navigazione tra le pagine del sito 
+
 • Bootstrap 5 + React-Bootstrap: per uno sviluppo rapido e responsive dell’interfaccia
 
 **Back-end** ➡️ https://github.com/lorella-marino/Capstone-Foodie-Backend.git
 
 • Java 21 ☕ e Spring Boot: per una gestione sicura di ordini, autenticazione e dati utente 
+
 • Spring Security + JWT 🔐: per autenticazione e autorizzazione degli utenti 
+
 • Spring Mail ✉️: per l’invio di email 
+
 • Stripe API 💳: per i pagamenti digitali 
+
 • Cloudinary ☁️: per il caricamento delle immagini 
+
 • Swagger📄: per la documentazione interattiva delle API 
+
 • Lombok: per semplificare la struttura delle classi 
+
 • PostgreSQL 🐘: come database relazionale per la gestione efficiente e strutturata di ordini, utenti e menù
 
 Questo capstone rappresenta per me un’opportunità per consolidare le competenze acquisite in ambito UI/UX e sviluppo Full Stack.
