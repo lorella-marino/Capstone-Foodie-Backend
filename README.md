@@ -1,6 +1,6 @@
 # Capstone-Foodie
 
-**Foodie | Sito web e app per food truck bio**
+**Foodie | web / app per food truck bio**
 
 Questo progetto nasce con l’obiettivo di realizzare una piattaforma digitale che unisca design e sviluppo 💻, offrendo un’esperienza utente fluida, funzionale e coerente con l’identità visiva del brand. L’idea è creare un sito/app per "Foodie", un food truck 🚚 specializzato in cucina biologica, che consenta agli utenti di consultare il menù, scoprire la filosofia del brand e prenotare i propri ordini in modo semplice e veloce, da qualsiasi dispositivo.
 
